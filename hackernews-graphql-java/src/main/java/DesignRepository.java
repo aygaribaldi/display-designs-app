@@ -26,6 +26,10 @@ public class DesignRepository {
         return design(doc);
     }
 
+    public void deleteById(String id) {
+        designs.deleteOne(eq("_id", new ObjectId(id)));
+    }
+
     public List<Design> getAllDesigns() {
         List<Design> allDesigns = new ArrayList<>();
         for (Document doc : designs.find()) {

@@ -20,6 +20,10 @@ public class Mutation implements GraphQLRootResolver {
         return newDesign;
     }
 
+    public boolean deleteDesign(String id) {
+        designRepository.deleteById(id);
+        return true;
+    }
     // public void editDesign(String id, String url, String description) {
     // // This replaces all old data, but some apps might want partial update.
     // Design currDesign = designRepository.findById(id);

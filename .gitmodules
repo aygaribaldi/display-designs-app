@@ -1,0 +1,4 @@
+[submodule "display-designs-frontend"]
+	path = display-designs-frontend
+	url = https://github.com/aygaribaldi/display-designs-frontend.git
+	branch = master

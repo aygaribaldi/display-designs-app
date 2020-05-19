@@ -4,6 +4,7 @@ type Query {
 
 type Mutation {
   createDesign(url: String!, description: String!): Design
+  deleteDesign(id: String!): Boolean
   #editDesign(url: String!, description: String!): Design
 }
 
