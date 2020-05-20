@@ -1,5 +1,7 @@
 import com.coxautodev.graphql.tools.GraphQLRootResolver;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.time.Instant;
 import java.time.ZoneOffset;
 
@@ -24,12 +26,13 @@ public class Mutation implements GraphQLRootResolver {
         designRepository.deleteById(id);
         return true;
     }
-    // public void editDesign(String id, String url, String description) {
-    // // This replaces all old data, but some apps might want partial update.
-    // Design currDesign = designRepository.findById(id);
-    // System.out.println("CURRENT DESIGN" + currDesign);
-    // currDesign.setUrl(url);
-    // currDesign.setDescription(description);
-    // designRepository.saveDesign(currDesign);
-    // }
+
+    public Design editDesign(String id, String url, String description) {
+        Design updatedDesign = new Design(id, url, description);
+        if (!url.isEmpty())
+            designRepository.updateUrl(id, url);
+        if (!description.isEmpty())
+            designRepository.updateDescription(id, description);
+        return updatedDesign;
+    }
 }

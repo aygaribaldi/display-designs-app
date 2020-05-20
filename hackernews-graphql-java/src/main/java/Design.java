@@ -1,8 +1,8 @@
 public class Design {
 
     private final String id;
-    private final String url;
-    private final String description;
+    private String url;
+    private String description;
 
     public Design(String url, String description) {
         this(null, url, description);
@@ -18,23 +18,19 @@ public class Design {
         return id;
     }
 
-    // public void setId(String id) {
-    // this.id = id;
-    // }
-
     public String getUrl() {
         return url;
     }
 
-    // public void setUrl(String url) {
-    // this.url = url;
-    // }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getDescription() {
         return description;
     }
 
-    // public void setDescription(String description) {
-    // this.description = description;
-    // }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

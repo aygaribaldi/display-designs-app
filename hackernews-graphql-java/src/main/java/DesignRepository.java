@@ -45,6 +45,14 @@ public class DesignRepository {
         designs.insertOne(doc);
     }
 
+    public void updateDescription(String id, String description) {
+        designs.updateOne(eq("_id", new ObjectId(id)), new Document("$set", new Document("description", description)));
+    }
+
+    public void updateUrl(String id, String url) {
+        designs.updateOne(eq("_id", new ObjectId(id)), new Document("$set", new Document("url", url)));
+    }
+
     private Design design(Document doc) {
         return new Design(doc.get("_id").toString(), doc.getString("url"), doc.getString("description"));
     }
