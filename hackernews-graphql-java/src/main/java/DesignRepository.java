@@ -30,19 +30,31 @@ public class DesignRepository {
         designs.deleteOne(eq("_id", new ObjectId(id)));
     }
 
-    public List<Design> getAllDesigns() {
-        List<Design> allDesigns = new ArrayList<>();
-        for (Document doc : designs.find()) {
-            allDesigns.add(design(doc));
-        }
-        return allDesigns;
-    }
+    // public List<Design> getAllDesigns() {
+    // List<Design> allDesigns = new ArrayList<>();
+    // for (Document doc : designs.find()) {
+
+    // allDesigns.add(design(doc));
+    // }
+    // return allDesigns;
+    // }
 
     public void saveDesign(Design design) {
         Document doc = new Document();
         doc.append("url", design.getUrl());
         doc.append("description", design.getDescription());
+        doc.append("postedBy", design.getUserId());
         designs.insertOne(doc);
+    }
+
+    public List<Design> getAllDesigns() {
+        List<Design> allDesigns = new ArrayList<>();
+        for (Document doc : designs.find()) {
+            Design design = new Design(doc.get("_id").toString(), doc.getString("url"), doc.getString("description"),
+                    doc.getString("postedBy"));
+            allDesigns.add(design);
+        }
+        return allDesigns;
     }
 
     public void updateDescription(String id, String description) {

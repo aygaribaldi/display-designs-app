@@ -1,3 +1,8 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
 type Query {
   allDesigns: [Design]
 }
@@ -6,15 +11,30 @@ type Mutation {
   createDesign(url: String!, description: String!): Design
   deleteDesign(id: String!): Boolean
   editDesign(id: String!, url: String, description: String): Design
+  createUser(name: String!, authProvider: AuthData!): User
+  signinUser(auth: AuthData): SigninPayload
 }
 
 type Design {
   id: ID!
   url: String!
   description: String!
+  postedBy: User
 }
 
-schema {
-  query: Query
-  mutation: Mutation
+type User {
+  id: ID!
+  name: String!
+  email: String
+  password: String
+}
+
+type SigninPayload {
+  token: String
+  user: User
+}
+
+input AuthData {
+  email: String!
+  password: String!
 }
