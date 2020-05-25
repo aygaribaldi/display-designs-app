@@ -20,6 +20,9 @@ public class Mutation implements GraphQLRootResolver {
 
     public Design createDesign(String url, String description, DataFetchingEnvironment env) {
         AuthContext context = env.getContext();
+        System.out.println("context: " + context);
+        System.out.println("getUser: " + context.getUser());
+        System.out.println("getID: " + context.getUser().getId());
         Design newDesign = new Design(url, description, context.getUser().getId());
         designRepository.saveDesign(newDesign);
         return newDesign;
